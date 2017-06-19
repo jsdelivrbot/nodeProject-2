@@ -2,19 +2,23 @@
 <html>
 <head>
 	<title>Stamps</title>
+	<link rel="stylesheet" href="styles.css">
 </head>
-<body>
-	<form method="GET" action="/rates">
-		<strong>Weight (oz):</strong><br>
-		<input name="weight" step="0.25" type="number" value="0.00" min="0.00">
-		<select name="mailType">
-			<option value="" selected disabled> Select an option... </option>
-			<option value="stamp"> Letters (Stamped)      </option>
-			<option value="meter"> Letters (Metered)      </option>
-			<option value="flat">  Large Envelopes (Flats)</option>
-			<option value="parcel">Parcel                 </option>
-		</select>
-		<input type="submit">
-	</form>
+<body class="ayy">
+	<div class="box">
+		<form method="GET" action="/rates">
+			<strong>Weight (oz):</strong><br>
+			<input name="weight" step="0.25" type="number" value="0.00" min="0.00"><br><br>
+			<strong>Mail Type:</strong><br>
+			<select name="mailType">
+				<option value="" selected disabled> Select an option... </option>
+				<option value="stamp"> Letters (Stamped)      </option>
+				<option value="meter"> Letters (Metered)      </option>
+				<option value="flat">  Large Envelopes (Flats)</option>
+				<option value="parcel">Parcel                 </option>
+			</select>
+			<input type="submit">
+		</form>
+	</div>
 </body>
 </html>

@@ -49,10 +49,12 @@ function calculatePrice(weight, type){
 			}
 		break;
 	}
+	console.log(weight);
 	for (var key in prices){
-		if (weight < key)
+		if (weight < parseFloat(key))
 			return prices[key];
 	}
+	return "This item is too heavy for this category";
 }
 
 module.exports.calculatePrice = calculatePrice;
