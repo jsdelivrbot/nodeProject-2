@@ -41,10 +41,7 @@ app.get("/rates", function(request, response){
 })
 
 app.get('/retrieveInfo', function(request, response){
-	var id = request.query.id;
-	console.log(id);
-	var params = [id];
-	pool.query("SELECT * FROM post WHERE id = $1::int", params, (err, res) => {
+	pool.query("SELECT * FROM post", (err, res) => {
 	  if (err) {
 	    throw err;
 	  }
@@ -70,6 +67,10 @@ app.get('/deletePost', function(request, response){
 	pool.query("DELETE FROM post",  (err, res) => {
 	  if (err) {
 	    throw err;
+	  }
+	  else{
+	  	response.write("you deleted everything, way to go.")
+	  	response.end();
 	  }
 	})
 });
