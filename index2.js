@@ -2,12 +2,9 @@ var express = require('express');
 var app = express();
 var logic = require('./logic.js');
 
-const { Pool } = require('pg')
+var pg = require('pg');
 
-const pool = new Pool({
-	user: 'postgres',
-	database: 'forum'
-})
+pg.defaults.ssl = true;
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -40,31 +37,34 @@ app.get("/rates", function(request, response){
 })
 
 app.get('/retrieveInfo', function(request, response){
-	var id = request.query.id;
-	console.log(id);
-	var params = [id];
-	pool.query("SELECT * FROM post WHERE id = $1::int", params, (err, res) => {
-	  if (err) {
-	    throw err;
-	  }
-	  console.log('Post:', res.rows[0]);
-	  response.json( res.rows[0]);
-	  response.end();
-	})
+	//var id = request.query.id;
+	pg.connect(process.env.DATABASE_URL, function(err, client) {
+  		if (err) throw err;
+  		console.log('Connected to postgres! Getting schemas...');
+
+  		client
+    		.query('SELECT * FROM post')
+    		.on('row', function(row) {
+      		response.json(row);
+    	});
+	});
 });
 
 app.get('/createPost', function(request, response){
-	//var id = request.query.id;
-	//console.log(id);
-	//var params = [id];
-	pool.query("INSERT INTO post(time_stamp, user_alias, content, image_path) VALUES ('2017-5-20', 'captainCornstarch', 'hhey guys', 'what.jpg')",  (err, res) => {
-	  if (err) {
-	    throw err;
-	  }
-	  console.log('Post:', res.rows[0]);
-	  response.json( res.rows[0]);
-	  response.end();
-	})
+	
+	pg.connect(process.env.DATABASE_URL, function(err, client) {
+  		if (err) throw err;
+  		console.log('Connected to postgres! Getting schemas...');
+
+  		client
+    		.query("INSERT INTO post(time_stamp, user_alias, content, image_path) VALUES ('2017-5-20', 'captainCornstarch', 'hhey guys', 'what.jpg')", function(err, result){
+    			console.log("success");
+    			
+    		})
+    		
+	});
+
+
 });
 
 
