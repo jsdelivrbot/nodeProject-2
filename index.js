@@ -5,11 +5,12 @@ var logic = require('./logic.js');
 const { Pool } = require('pg')
 
 const pool = new Pool({
-	user: 'tsqwuuvdevwrjh',
+	user: process.env.USER,
 	database: 'd2m1360k901veu',
 	host: 'ec2-107-21-99-176.compute-1.amazonaws.com',
 	password: '2f95f210acd309026be0b0f6711b2f898d4727e63968d1be8eeb8172fb3fc662'
 })
+console.log()
 
 app.set('port', (process.env.PORT || 5000));
 
