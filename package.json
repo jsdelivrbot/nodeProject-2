@@ -7,7 +7,7 @@
   },
   "main": "index2.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index2.js"
   },
   "dependencies": {
     "ejs": "2.5.6",
