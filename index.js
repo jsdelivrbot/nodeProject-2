@@ -37,6 +37,7 @@ app.get("/rates", function(request, response){
 })
 
 app.get('/retrieveInfo', function(request, response){
+	var id = request.query.id;
 	pg.connect(process.env.DATABASE_URL, function(err, client) {
   		if (err) throw err;
   		console.log('Connected to postgres! Getting schemas...');
