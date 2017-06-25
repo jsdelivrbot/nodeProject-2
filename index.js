@@ -57,7 +57,7 @@ app.get('/createPost', function(request, response){
   		console.log('Connected to postgres! Getting schemas...');
 
   		client
-    		.query("INSERT INTO post(time_stamp, user_alias, content, image_path) VALUES ('2017-5-20', 'captainCornstarch', 'hhey guys', 'what.jpg')" function(err, result){
+    		.query("INSERT INTO post(time_stamp, user_alias, content, image_path) VALUES ('2017-5-20', 'captainCornstarch', 'hhey guys', 'what.jpg')", function(err, result){
     			console.log("success");
     			done();
     		})
