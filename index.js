@@ -43,7 +43,7 @@ app.get('/retrieveInfo', function(request, response){
   		console.log('Connected to postgres! Getting schemas...');
 
   		client
-    		.query('SELECT * FROM post WHERE id = $1::int;')
+    		.query('SELECT * FROM post')
     		.on('row', function(row) {
       		response.json(row);
     });
