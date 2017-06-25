@@ -51,17 +51,19 @@ app.get('/retrieveInfo', function(request, response){
 });
 
 app.get('/createPost', function(request, response){
-	//var id = request.query.id;
-	//console.log(id);
-	//var params = [id];
-	pool.query("INSERT INTO post(time_stamp, user_alias, content, image_path) VALUES ('2017-5-20', 'captainCornstarch', 'hhey guys', 'what.jpg')",  (err, res) => {
-	  if (err) {
-	    throw err;
-	  }
-	  console.log('Post:', res.rows[0]);
-	  response.json( res.rows[0]);
-	  response.end();
-	})
+	
+	pg.connect(process.env.DATABASE_URL, function(err, client) {
+  		if (err) throw err;
+  		console.log('Connected to postgres! Getting schemas...');
+
+  		client
+    		.query("INSERT INTO post(time_stamp, user_alias, content, image_path) VALUES ('2017-5-20', 'captainCornstarch', 'hhey guys', 'what.jpg')")
+    		.on('row', function(ro.jw) {
+      		responseson(row);
+    	});
+	});
+
+
 });
 
 
