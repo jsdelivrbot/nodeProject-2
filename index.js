@@ -58,9 +58,7 @@ app.get('/createPost', function(request, response){
 
   		client
     		.query("INSERT INTO post(time_stamp, user_alias, content, image_path) VALUES ('2017-5-20', 'captainCornstarch', 'hhey guys', 'what.jpg')")
-    		.on('row', function(ro.jw) {
-      		responseson(row);
-    	});
+    		
 	});
 
 
