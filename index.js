@@ -55,16 +55,21 @@ app.get('/retrieveInfo', function(request, response){
 });
 
 app.get('/createPost', function(request, response){
-	//var id = request.query.id;
-	//console.log(id);
-	//var params = [id];
 	pool.query("INSERT INTO post(time_stamp, user_alias, content, image_path) VALUES ('2017-5-20', 'captainCornstarch', 'hhey guys', 'what.jpg')",  (err, res) => {
 	  if (err) {
 	    throw err;
 	  }
-	  console.log('Post:', res.rows[0]);
-	  response.json( res.rows[0]);
-	  response.end();
+	  else{
+	  	response.write("post created!")
+	  }
+	})
+});
+
+app.get('/deletePost', function(request, response){
+	pool.query("DELETE * FROM post",  (err, res) => {
+	  if (err) {
+	    throw err;
+	  }
 	})
 });
 
