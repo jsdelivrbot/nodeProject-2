@@ -61,12 +61,13 @@ app.get('/createPost', function(request, response){
 	  }
 	  else{
 	  	response.write("post created!")
+	  	response.end();
 	  }
 	})
 });
 
 app.get('/deletePost', function(request, response){
-	pool.query("DELETE * FROM post",  (err, res) => {
+	pool.query("DELETE FROM post",  (err, res) => {
 	  if (err) {
 	    throw err;
 	  }
