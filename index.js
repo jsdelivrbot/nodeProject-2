@@ -3,12 +3,23 @@ var app = express();
 var logic = require('./logic.js');
 
 const { Pool } = require('pg')
-var connectionString = process.env.DATABASE_URL;
+var pool;
+var connectionString;
+if (process.env.DATABASE_URL){
+	connectionString = process.env.DATABASE_URL;
+	pool = new Pool({
+		connectionString: connectionString,
+	})
+}
+else{
+	pool = new Pool({
+		user: 'postgres',
+		database: 'forum'
+	})
+}
 
-const pool = new Pool({
-	connectionString: connectionString,
-})
-console.log(process.env);
+
+console.log(connectionString);
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -46,7 +57,7 @@ app.get('/retrieveInfo', function(request, response){
 	    throw err;
 	  }
 	  console.log('Post:', res.rows[0]);
-	  response.json( res.rows[0]);
+	  response.json(res.rows);
 	  response.end();
 	})
 });
