@@ -25,6 +25,7 @@ app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 
+
 // views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
@@ -35,6 +36,10 @@ app.get('/', function(request, response) {
 
 app.get("/ups", function(request, response){
 	response.sendFile(__dirname + "/public/prove09.html");
+})
+
+app.get("/forum", function(request, response){
+	response.sendFile(__dirname + "/public/forum.html");
 })
 
 app.get("/rates", function(request, response){
@@ -56,7 +61,7 @@ app.get('/retrieveInfo', function(request, response){
 	  if (err) {
 	    throw err;
 	  }
-	  console.log('Post:', res.rows[0]);
+	  //console.log('Post:', res.rows[0]);
 	  response.json(res.rows);
 	  response.end();
 	})
