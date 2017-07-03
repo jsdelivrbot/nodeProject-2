@@ -5,7 +5,18 @@
 		<script src="consume.js"></script>
 	</head>
 	<body>
-		<button onclick="getPosts()">GET DEM POSTS</button>
+		<button onclick="getPosts()">Get Posts</button>
 		<div id="result"></div>
+		<hr>
+		<div>
+			Write New Post:<br><br>
+			Alias:<br>
+			<input id="alias"><br>
+			Content:<br>
+			<input id="content"><br>
+			Image Name:<br>
+			<input id="imagepath"><br><br>
+			<button onclick="createPost()">Create Post</button>
+		</div>
 	</body>
 </html>

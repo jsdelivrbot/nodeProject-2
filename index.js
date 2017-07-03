@@ -67,8 +67,10 @@ app.get('/retrieveInfo', function(request, response){
 	})
 });
 
-app.get('/createPost', function(request, response){
-	pool.query("INSERT INTO post(time_stamp, user_alias, content, image_path) VALUES ('2017-5-20', 'captainCornstarch', 'hhey guys', 'what.jpg')",  (err, res) => {
+app.get('/createPost/:alias/:content/:imagePath', function(request, response){
+	
+	console.log(request.params.alias);
+	pool.query("INSERT INTO post(time_stamp, user_alias, content, image_path) VALUES ('2017-5-20', '"+ request.params.alias + "', '"+ request.params.content +"', '"+ request.params.imagePath + "')",  (err, res) => {
 	  if (err) {
 	    throw err;
 	  }
