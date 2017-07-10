@@ -8,8 +8,9 @@ function getPosts(){
             var response = JSON.parse(xmlhttp.responseText);
             console.log(response);
             for(var i = 0; i < response.length; i++){
-          
-              result.innerHTML += "<li>" + response[i].content + ", " + response[i].user_alias + ", " + response[i].image_path + "</li>";
+              var d = new Date(Date.parse(response[i].time_stamp)).toUTCString();
+              result.innerHTML += "<div class='card'>" + response[i].user_alias + "<br>Post: " + response[i].id + "<span class='date'>" + d +"</span><hr>"
+                                +  response[i].content + ", "   + ", " + response[i].image_path + "</li></div>";
               
             }
 				
@@ -23,7 +24,7 @@ function getPosts(){
         }
     };
 
-    xmlhttp.open("GET", "http://quiet-crag-95183.herokuapp.com/retrieveInfo", true);
+    xmlhttp.open("GET", "/retrieveInfo", true);
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send();
 }
@@ -31,9 +32,18 @@ function getPosts(){
 function createPost(){
   var xmlhttp = new XMLHttpRequest();
   var result = document.getElementById("result").value;
-  var alias = document.getElementById("alias").value;
-  var content = document.getElementById("content").value;
-  var imagePath = document.getElementById("imagepath").value;
+  var alias = escape(document.getElementById("alias").value);
+  var content = escape(document.getElementById("content").value);
+  var imagePath = escape(document.getElementById("imagepath").value);
+  var d = new Date()
+  var time = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes();
+  var params = {
+    alias: alias,
+    content: content,
+    imagePath: imagePath,
+    time: time
+  }
+  console.log(time);
 
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
@@ -49,7 +59,12 @@ function createPost(){
         }
     };
 
-    xmlhttp.open("GET", "http://quiet-crag-95183.herokuapp.com/createPost/" + alias + "/" + content + "/" + imagePath, true);
-    //xmlhttp.setRequestHeader("Content-Type", "application/json");
-    xmlhttp.send();
+    xmlhttp.open("POST", "/createPost", true);
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send(JSON.stringify(params));
+}
+
+function escape(param){
+  param = param.replace(/'/g, "''");
+  return param;
 }

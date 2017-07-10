@@ -1,6 +1,9 @@
 var express = require('express');
 var app = express();
 var logic = require('./logic.js');
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended :true}));
 
 const { Pool } = require('pg')
 var pool;
@@ -67,10 +70,15 @@ app.get('/retrieveInfo', function(request, response){
 	})
 });
 
-app.get('/createPost/:alias/:content/:imagePath', function(request, response){
-	
-	console.log(request.params.alias);
-	pool.query("INSERT INTO post(time_stamp, user_alias, content, image_path) VALUES ('2017-5-20', '"+ request.params.alias + "', '"+ request.params.content +"', '"+ request.params.imagePath + "')",  (err, res) => {
+app.post('/createPost', function(request, response){
+	var alias = request.body.alias;
+	var content = request.body.content;
+	var imagePath = request.body.imagePath;
+	var time = request.body.time;
+	console.log(request.body.alias);
+	console.log(request.params);
+	console.log(request.body);
+	pool.query("INSERT INTO post(user_alias, content, image_path) VALUES ('"+ alias + "', '"+ content +"', '"+ imagePath + "')",  (err, res) => {
 	  if (err) {
 	    throw err;
 	  }

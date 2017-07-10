@@ -8,3 +8,15 @@
 	padding: 100px;
 	width: 50%;
 }
+.card{
+	width: 75%;
+	background-color: black;
+	margin:0 auto;
+	color: white;
+	padding: 10px;
+	margin: 10px auto;
+}
+.date{
+	text-align: right;
+	float: right;
+}
