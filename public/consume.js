@@ -10,7 +10,7 @@ function getPosts(){
             for(var i = 0; i < response.length; i++){
               var d = new Date(Date.parse(response[i].time_stamp)).toUTCString();
               result.innerHTML += "<div class='card'>" + response[i].user_alias + "<br>Post: " + response[i].id + "<span class='date'>" + d +"</span><hr>"
-                                +  response[i].content + ", "   + ", " + response[i].image_path + "</li></div>";
+                                +  response[i].content + "<br>" + response[i].image_path + "</div>";
               
             }
 				
