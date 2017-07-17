@@ -94,7 +94,7 @@ function clearForm(){
 
 function validate(){
   var xmlhttp = new XMLHttpRequest();
-  var data{
+  var data = {
     secret: '6LfsiSgUAAAAACunmKyW4uOAjV_hZ_tcZ6R9Stc3',
     response: ''
   }
