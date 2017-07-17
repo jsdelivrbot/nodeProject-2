@@ -95,7 +95,7 @@ app.get('/retrieveInfo', function(request, response){
 app.post('/createPost', function(request, response){
 	var alias = request.body.alias;
 	var content = request.body.content;
-	var imagePath = request.body.imagePath;w
+	var imagePath = request.body.imagePath;
 	var time = request.body.time;
 	console.log(request.body.alias);
 	console.log(request.params);
@@ -111,7 +111,6 @@ app.post('/createPost', function(request, response){
 	})
 });
 
-app.post('')
 
 app.get('/deletePost', function(request, response){
 	pool.query("DELETE FROM post",  (err, res) => {

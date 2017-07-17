@@ -94,10 +94,6 @@ function clearForm(){
 
 function validate(){
   var xmlhttp = new XMLHttpRequest();
-  var data = {
-    secret: '6LfsiSgUAAAAACunmKyW4uOAjV_hZ_tcZ6R9Stc3',
-    response: ''
-  }
 
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
@@ -119,8 +115,9 @@ function validate(){
         }
     };
 
-    xmlhttp.open("POST", "https://www.google.com/recaptcha/api/siteverify", true);
-    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.open("GET", "https://www.google.com/recaptcha/api/siteverify", true);
+    console.log(xmlhttp);
+    xmlhttp.setRequestHeader("Content-Type", "Access-Control-Allow-Origin");
     xmlhttp.send();
 
 }
