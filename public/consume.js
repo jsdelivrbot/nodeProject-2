@@ -103,7 +103,7 @@ function validate(){
             console.log(response);
             console.log(response.formSubmit);
               if (response.formSubmit == true){
-                createPost();
+                createPost(); //
               }
             }
            else if (xmlhttp.status == 400) {
