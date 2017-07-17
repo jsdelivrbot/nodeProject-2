@@ -2,6 +2,14 @@ var express = require('express');
 var app = express();
 var logic = require('./logic.js');
 var bodyParser = require('body-parser');
+
+reCAPTCHA=require('recaptcha2')
+ 
+recaptcha=new reCAPTCHA({
+  siteKey:'6LfsiSgUAAAAAAEp4MGjHT4zKh51UGCHAiRpPnPj',
+  secretKey:'6LfsiSgUAAAAACunmKyW4uOAjV_hZ_tcZ6R9Stc3'
+})
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended :true}));
 
@@ -32,6 +40,19 @@ app.use(express.static(__dirname + '/public'));
 // views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+
+
+app.get('/validate', function(req, res){
+	recaptcha.validateRequest(req)
+  .then(function(){
+    // validated and secure
+    res.json({formSubmit:true})
+  })
+  .catch(function(errorCodes){
+    // invalid
+    res.json({formSubmit:false,errors:recaptcha.translateErrors(errorCodes)});// translate error codes to human readable text
+  });
+});
 
 app.get('/', function(request, response) {
   response.render('pages/index');
@@ -73,7 +94,7 @@ app.get('/retrieveInfo', function(request, response){
 app.post('/createPost', function(request, response){
 	var alias = request.body.alias;
 	var content = request.body.content;
-	var imagePath = request.body.imagePath;
+	var imagePath = request.body.imagePath;w
 	var time = request.body.time;
 	console.log(request.body.alias);
 	console.log(request.params);
@@ -88,6 +109,8 @@ app.post('/createPost', function(request, response){
 	  }
 	})
 });
+
+app.post('')
 
 app.get('/deletePost', function(request, response){
 	pool.query("DELETE FROM post",  (err, res) => {

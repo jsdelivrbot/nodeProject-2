@@ -7,20 +7,21 @@
 		<script src='https://www.google.com/recaptcha/api.js'></script>
 
 	</head>
-	<body>
+	<body class="body" onLoad="getPosts()">
 		<button onclick="getPosts()">Get Posts</button>
 		<div id="result"></div>
 		<hr>
-		<div>
+		<div class="newPost" id="newpost">
 			Write New Post:<br><br>
 			Alias:<br>
 			<input id="alias"><br>
 			Content:<br>
-			<input id="content"><br>
+			<textarea style="width:50%; height:100px" id="content"></textarea><br>
 			Image Name:<br>
 			<input id="imagepath"><br><br>
 			<div class="g-recaptcha" data-sitekey="6LfsiSgUAAAAAAEp4MGjHT4zKh51UGCHAiRpPnPj"></div><br><br>
-			<button onclick="createPost()">Create Post</button>
+			<button onclick="validate()">Create Post</button>
+
 		</div>
 	</body>
 </html>

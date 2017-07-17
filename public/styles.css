@@ -11,12 +11,25 @@
 .card{
 	width: 75%;
 	background-color: black;
-	margin:0 auto;
+	//margin:0 auto;
 	color: white;
 	padding: 10px;
-	margin: 10px auto;
+	margin: 10px ;
 }
 .date{
 	text-align: right;
 	float: right;
+}
+.replyLink{
+	cursor: pointer;
+}
+.newPost{
+	background-color: black;
+	color: white;
+	padding: 10px;
+	margin: 10px;
+	width: 75%;
+}
+.body{
+	background-color: grey;
 }
