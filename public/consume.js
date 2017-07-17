@@ -101,7 +101,7 @@ function validate(){
             
             var response = JSON.parse(xmlhttp.responseText);
             console.log(response);
-            console.log(response.formSubmit);
+            //console.log(response.formSubmit);
               if (response.formSubmit == true){
                 createPost(); //
               }
@@ -115,7 +115,7 @@ function validate(){
         }
     };
 
-    xmlhttp.open("GET", "/validate", true);
+    xmlhttp.open("POST", "https://www.google.com/recaptcha/api/siteverify", true);
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send();
 

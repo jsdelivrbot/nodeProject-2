@@ -7,7 +7,8 @@ reCAPTCHA=require('recaptcha2')
  
 recaptcha=new reCAPTCHA({
   siteKey:'6LfsiSgUAAAAAAEp4MGjHT4zKh51UGCHAiRpPnPj',
-  secretKey:'6LfsiSgUAAAAACunmKyW4uOAjV_hZ_tcZ6R9Stc3'
+  secretKey:'6LfsiSgUAAAAACunmKyW4uOAjV_hZ_tcZ6R9Stc3',
+  response:''
 })
 
 app.use(bodyParser.json());
